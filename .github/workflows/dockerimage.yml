@@ -12,11 +12,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag mrostanski/skrewdriver:$(date +%s)
-      - name: Login to the Docker Hub
-        env:
-          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        run: docker login --username mrostanski --password "$DOCKER_PASS"
-      - name: Push the Docker image
-        run: docker push mrostanski/skrewdriver:$(date +%s)
+      - uses: mr-smithers-excellent/docker-build-push@v3
+        name: Build & push Docker image
+        with:
+          image: mrostanski/skrewdriver
+          tag: latest
+          registry: docker.io
+          dockerfile: Dockerfile.ci
+          username: mrostanski
+          password: ${{ secrets.DOCKER_PASS }}
