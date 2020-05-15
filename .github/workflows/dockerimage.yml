@@ -17,6 +17,6 @@ jobs:
       - name: Login to the Docker Hub
         env:
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        run: docker login --username foo --password "$DOCKER_PASS"
+        run: docker login --username mrostanski --password "$DOCKER_PASS"
       - name: Push the Docker image
         run: docker push mrostanski/skrewdriver:$(date +%s)
