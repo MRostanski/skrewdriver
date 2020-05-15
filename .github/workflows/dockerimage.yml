@@ -18,6 +18,6 @@ jobs:
           image: mrostanski/skrewdriver
           tag: latest
           registry: docker.io
-          dockerfile: Dockerfile.ci
+          dockerfile: Dockerfile
           username: mrostanski
           password: ${{ secrets.DOCKER_PASS }}
