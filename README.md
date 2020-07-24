@@ -5,7 +5,7 @@ Simple image of tools-loaded pod for Kubernetes bowels quick analysis.
 ## Usage
 
 ```bash
-kubectl run -i --tty skrewdriver --image=mrostanski/skrewdriver --restart=Never -- /bin/bash
+kubectl run -i --tty skrewdriver --image=mrostanski/skrewdriver --restart=Never -- /bin/sh
 
 # Do your job
 
