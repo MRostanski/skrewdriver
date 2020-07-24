@@ -1,7 +1,3 @@
-FROM ubuntu:18.04
+FROM alpine
 
-RUN apt-get update
-RUN apt-get -y upgrade
-
-RUN apt-get -y install curl wget iputils-ping net-tools tcpdump screen
-
+RUN apk add --update --no-cache curl wget iputils net-tools tcpdump screen
