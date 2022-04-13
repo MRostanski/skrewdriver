@@ -4,6 +4,7 @@ Simple image of tools-loaded pod for Kubernetes bowels quick analysis.
 
 [![Docker Image CI](https://github.com/MRostanski/skrewdriver/actions/workflows/dockerimage.yml/badge.svg?branch=master&event=push)](https://github.com/MRostanski/skrewdriver/actions/workflows/dockerimage.yml)
 
+[![dockerimage](https://github.com/MRostanski/skrewdriver/actions/workflows/dockerimage.yml/badge.svg)](https://github.com/MRostanski/skrewdriver/actions/workflows/dockerimage.yml)
 ## Usage
 
 ```bash
