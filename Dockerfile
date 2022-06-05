@@ -1,7 +1,3 @@
-FROM ubuntu:23.04
+FROM alpine:latest
 
-RUN apt-get update
-RUN apt-get -y upgrade
-
-RUN apt-get -y install curl wget iputils-ping net-tools tcpdump screen
-
+RUN apk add --no-cache curl wget iputils net-tools tcpdump screen moreutils less
