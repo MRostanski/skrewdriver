@@ -20,15 +20,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Get repository base name
-        env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-        run: |
-          echo GITHUB_REPOSITORY_BASE_NAME=$(basename "$GITHUB_REPOSTIORY") >> $GITHUB_ENV
+      # - name: Get repository base name
+      #   env:
+      #     GITHUB_REPOSITORY: ${{ github.repository }}
+      #   run: |
+      #     echo GITHUB_REPOSITORY_BASE_NAME=$(basename "$GITHUB_REPOSTIORY") >> $GITHUB_ENV
       - name: Build & push Docker image
         uses: docker/build-push-action@v3
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.GITHUB_REPOSITORY_BASE_NAME }}:latest
+          # tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.GITHUB_REPOSITORY_BASE_NAME }}:latest
+          tags: ${{ github.repository }}:latest
           push: true
