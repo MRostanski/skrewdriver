@@ -13,20 +13,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set up Docker Buildx (Multiarch)
+      - name: Set up Docker Buildx (multiarch)
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Get base repository name
+      - name: Get repository base name
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          echo GITHUB_REPOSITORY_NAME=$(basename {{ github.repository }}) >> $GITHUB_ENV
+          echo GITHUB_REPOSITORY_BASE_NAME=$(basename "$GITHUB_REPOSTIORY") >> $GITHUB_ENV
       - name: Build & push Docker image
         uses: docker/build-push-action@v3
         with:
           context: .
           platforms: linux/amd64,linux/arm64
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.GITHUB_REPOSITORY_BASE_NAME }}:latest
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.GITHUB_REPOSITORY_NAME }}:latest
